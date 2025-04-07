@@ -2,6 +2,10 @@
  Repositório para desenvolvimento de uma aplicação que gera gráficos a partir de expressões matemáticas
  Para desenvolvimento do projeto em questão utilizei o framework Vite React. O framework utiliza JavaScript para a base estrutural dos componentes, usando a modularização para categorizar: estilos, funcionalidades, bibliotecas e recursos.
 
+ Utilizei os seguintes comandos no terminal itegrado para compilar e atualizar o projeto:
+  npm run build
+  npm run deploy
+
 Você pode contribuir com sugestões de melhorias através do Github ou entrar em contato pelo meu email pessoal: nespolo.m1@gmail.com
 
 # Vite README
