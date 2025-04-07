@@ -4,7 +4,7 @@ import { evaluate } from 'mathjs'
 import './App.css'
 
 export default function App() {
-  const [func, setFunc] = useState('x^2 + y^2')
+  const [func, setFunc] = useState('log(x*x) + log(y*y)')
   const [xMin, setXMin] = useState(-10)
   const [xMax, setXMax] = useState(10)
   const [yMin, setYMin] = useState(-10)
