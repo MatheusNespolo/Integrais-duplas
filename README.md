@@ -9,7 +9,10 @@
   npm run build
   
   npm run deploy
-  
+
+ Para expor o IP do server e rodar localmente a aplicação (apenas para testes) o comando é:
+
+ npm run dev
 
 Você pode contribuir com sugestões de melhorias através do Github ou entrar em contato pelo meu email pessoal: nespolo.m1@gmail.com
 
