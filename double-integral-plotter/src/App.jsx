@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Plotly from 'plotly.js-dist'
 import { evaluate } from 'mathjs'
 import './App.css'
 
 export default function App() {
   const [func, setFunc] = useState('log(x*x) + log(y*y)')
-  const [xMin, setXMin] = useState(-10)
-  const [xMax, setXMax] = useState(10)
-  const [yMin, setYMin] = useState(-10)
-  const [yMax, setYMax] = useState(10)
+  const xMin = -10
+  const xMax = 10
+  const yMin = -10
+  const yMax = 10
 
+  useEffect(() => {
+    plot()
+  }, [])
   const plot = () => {
     const xVals = numericRange(xMin, xMax, 40)
     const yVals = numericRange(yMin, yMax, 40)
@@ -41,21 +44,28 @@ export default function App() {
       },
     }
 
-    Plotly.newPlot('plot', [surface], layout)
+    Plotly.newPlot('plot', [surface],
+      {layout,
+        autosize: true,
+        width: '80%',
+        margin: {t: 40, l: 40, r: 40, b: 40},
+      }).then(() => {
+      window.addEventListener('resize', () => {
+        Plotly.Plots.resize(document.getElementById('plot'));
+      });
+    });
   }
 
   return (
     <div className="container">
       <h1>Nesplot</h1>
-      <input value={func} onChange={e => setFunc(e.target.value)} placeholder="f(x,y)" />
-      <div className="inputs">
-        <label>x: <input type="number" value={xMin} onChange={e => setXMin(+e.target.value)} /></label>
-        <label>x: <input type="number" value={xMax} onChange={e => setXMax(+e.target.value)} /></label>
-        <label>y: <input type="number" value={yMin} onChange={e => setYMin(+e.target.value)} /></label>
-        <label>y: <input type="number" value={yMax} onChange={e => setYMax(+e.target.value)} /></label>
-      </div>
+      <input
+        value={func}
+        onChange={e => setFunc(e.target.value)}
+        placeholder="f(x,y)"
+      />
       <button onClick={plot}>Gerar Gráfico</button>
-      <div id="plot" style={{ width: '100%', height: '600px' }}></div>
+      <div id="plot" style={{ width: '100%', height: '600px', marginTop: '2rem' }}></div>
     </div>
   )
 }
